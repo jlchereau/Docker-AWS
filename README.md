@@ -24,6 +24,8 @@ console.log('Running on http://localhost:' + PORT);
 
 It only requires nodeJS and expressJS.
 
+
+
 ## Installation of Docker
 
 ### on Windows
@@ -44,20 +46,22 @@ Fix as follows (See https://github.com/boot2docker/boot2docker/issues/436):
 
 There is a nice tutorial how to run docker on Windows at http://blog.tutum.co/2014/11/05/how-to-use-docker-on-windows/.
 
-To share a windows folder, first run in the boot2docker console:
+To share a windows folder, first install CIFS in the boot2docker console:
 
 ```shell
 $ wget http://distro.ibiblio.org/tinycorelinux/5.x/x86/tcz/cifs-utils.tcz
 $ tce-load -i cifs-utils.tcz
 ```
 
-Then run:
+Assuming the current project is located in a folder named ```Docker-AWS``` on the Windows Desktop, run in the boot2docker console:
 
 ```shell
-$ sudo mkdir /shared/src
-$ sudo mount -t cifs //<ip-address>/Users/<username>/Desktop/Docker /shared/src -o username=<login>
+$ sudo mkdir -p /shared/src
+$ sudo mount -t cifs //<ip-address>/Users/<username>/Desktop/Docker-AWS /shared/src -o username=<login>
 ```
+
+
 
 ### Miscellaneous
 
-To remove untagged images (<none> tag) from Docker host, see http://jimhoskins.com/2013/07/27/remove-untagged-docker-images.html
+To remove untagged images (```<none>``` tag) from your Docker host, see http://jimhoskins.com/2013/07/27/remove-untagged-docker-images.html
