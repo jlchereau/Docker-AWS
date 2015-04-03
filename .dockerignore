@@ -1,3 +1,6 @@
+/.idea
+/.git
 /graphics
 /node_modules
+/steps
 *.md

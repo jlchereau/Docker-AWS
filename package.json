@@ -1,9 +1,12 @@
 {
-  "name": "docker-centos-hello",
+  "name": "Docker-AWS",
   "private": true,
   "version": "0.0.1",
-  "description": "Node.js Hello world app on CentOS using docker",
-  "author": "Daniel Gasienica <daniel@gasienica.ch>",
+  "description": "Node.js Hello world app using docker",
+  "author": "Jacques L. Chereau",
+  "scripts": {
+    "start": "node index"
+  },
   "dependencies": {
     "express": "^4.12.3"
   }

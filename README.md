@@ -102,10 +102,14 @@ EXPOSE  8080
 CMD ["node", "/app/index.js"]
 ```
 
+This file can actually be found at
+
+
+
 The second step consists in building an image in the boot2docker console:
 
 ```shell
-$ sudo docker build -t <username>/hello .
+$ docker build -t <username>/hello .
 ```
 
 ```$ docker images``` should display 2 new images named ```centos``` and ```<username>/hello```.
@@ -113,7 +117,7 @@ $ sudo docker build -t <username>/hello .
 The third step consists in running the container from the image:
 
 ```
-$ sudo docker run -p 49160:8080 -d <username>/hello
+$ docker run -p 49160:8080 -d <username>/hello
 ```
 
 ```$ docker ps``` should display your container running in the docker VM.

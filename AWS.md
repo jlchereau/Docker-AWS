@@ -12,7 +12,8 @@ There are 3 ways to deploy:
 - Manifest that describes how to run a container (Dockerrun.aws.json)
 - Zip with app context
 
-This is well described at https://www.youtube.com/watch?v=OzLXj2W2Rss.
+This is well described at https://www.youtube.com/watch?v=OzLXj2W2Rss and http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_image.html.
+We are not considering https://docs.docker.com/installation/amazon/.
 
 ## Prerequisite
 
@@ -55,13 +56,19 @@ Then go to the Elastic Beanstalk service in the AWS Console:
 
 ![Healthy deployment](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/aws3.png)
 
-8. Run your app at http://<appname>.elasticbeanstalk.com
+8. Run your app at ```http://<appname>.elasticbeanstalk.com```
 
 ![Upload file](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/aws4.png)
 
 This is further described at https://www.youtube.com/watch?v=QvXMCjTKNbc.
 
+## Upload a Dockerfile (Single Instance)
 
+
+
+
+
+## Upload a Zip
 
 
 
