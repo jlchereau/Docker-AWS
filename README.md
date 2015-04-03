@@ -102,9 +102,14 @@ EXPOSE  8080
 CMD ["node", "/app/index.js"]
 ```
 
-This file can actually be found at
+This first Dockerfile can be found at https://github.com/jlchereau/Docker-AWS/blob/master/steps/1/Dockerfile.
+There is a better alternative which consists in using https://github.com/dockerfile/nodejs-runtime as reproduced here below.
 
+```
+FROM dockerfile/nodejs-runtime
+```
 
+This second Dockerfile can be found at https://github.com/jlchereau/Docker-AWS/blob/master/Dockerfile.
 
 The second step consists in building an image in the boot2docker console:
 
