@@ -49,7 +49,7 @@ To share a windows folder, first run in the boot2docker console:
 ```shell
 $ wget http://distro.ibiblio.org/tinycorelinux/5.x/x86/tcz/cifs-utils.tcz
 $ tce-load -i cifs-utils.tcz
-``
+```
 
 Then run:
 
