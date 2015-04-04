@@ -55,6 +55,21 @@ You can finally run a browser in windows to connect to port 49160 at your VM's I
 
 ![Hellow World](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/readme2.png)
 
+## Updates
+
+We will now replace Dockerfile with the following using https://github.com/dockerfile/nodejs-runtime as reproduced here below.
+
+```
+FROM dockerfile/nodejs-runtime
+```
+
+*Note: This second Dockerfile can be found at https://github.com/jlchereau/Docker-AWS/blob/master/Dockerfile.*
+
+
+
+
+
+
 ## Setup triggers
 
 TODO

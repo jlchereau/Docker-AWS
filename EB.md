@@ -1,4 +1,4 @@
-# Deploy a dockerized application on AWS
+# Deployment of a dockerized application on AWS via Elastic Beanstalk
 
 ## Introduction
 
@@ -45,20 +45,20 @@ Then go to the Elastic Beanstalk service in the AWS Console:
 3. Use the ```aws-elasticbeanstalk-ec2-role``` role created as explained in the prerequisites
 4. Select the Docker configuration and the single instance environment
 
-![Docker configuration](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/aws1.png)
+![Docker configuration](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/eb1.png)
 
 5. Upload ```Dockerrun.aws.json```
 
-![Upload file](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/aws2.png)
+![Upload file](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/eb2.png)
 
 6. Accept default options until you get to click **Launch**
 7. Wait until the dashboard displays your deployment as healthy
 
-![Healthy deployment](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/aws3.png)
+![Healthy deployment](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/eb3.png)
 
 8. Run your app at ```http://<appname>.elasticbeanstalk.com```
 
-![Upload file](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/aws4.png)
+![Upload file](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/eb4.png)
 
 This is further described at https://www.youtube.com/watch?v=QvXMCjTKNbc.
 
@@ -90,6 +90,13 @@ Test your installation by running ```eb --version```. You should see something l
 
 - http://www.incrediblemolk.com/running-a-docker-container-on-aws-elastic-beanstalk/
 - http://victorlin.me/posts/2014/11/26/running-docker-with-aws-elastic-beanstalk
+- http://blog.flux7.com/blogs/docker/10-steps-deploying-docker-containers-on-elastic-beanstalk
+
+Clone GIT
+- http://stackoverflow.com/questions/23391839/clone-private-git-repo-with-dockerfile
+
+
+
 
 
 - https://www.youtube.com/watch?v=q4MVVL6rmd4
