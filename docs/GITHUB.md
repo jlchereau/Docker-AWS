@@ -107,6 +107,8 @@ Let's configure these releases in Docker hub to build an image per release. On t
 
 ![Version 0.1.0 and Version 0.2.0 in Docker hub](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/github7.png)
 
+This is further explained in a [support case](https://support.docker.com/hc/en-us/requests/3591).
+
 The docker image for v0.1.0 can be loaded in the following dockerrun.aws.json:
 
 ```json
