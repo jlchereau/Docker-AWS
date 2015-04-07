@@ -55,7 +55,7 @@ You can finally run a browser in windows to connect to port 49160 at your VM's I
 
 ![Hellow World](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/readme2.png)
 
-## Updates
+## Versioning
 
 We will now replace Dockerfile with the following using https://github.com/dockerfile/nodejs-runtime as reproduced here below.
 
@@ -63,15 +63,70 @@ We will now replace Dockerfile with the following using https://github.com/docke
 FROM dockerfile/nodejs-runtime
 ```
 
-*Note: This second Dockerfile can be found at https://github.com/jlchereau/Docker-AWS/blob/master/Dockerfile.*
+*Note: This second Dockerfile can be found at https://github.com/jlchereau/Docker-AWS/blob/master/steps/2%20EB%20Single%20Instance%20from%20NodeJS/Dockerfile.*
 
+To create version 0.1.0, let's commit, tag with ```v0.1.0``` then push to Github:
+ 
+```
+git commit -m "Updated Dockerfile"
+git tag -a v0.1.0 -m 'Version 0.1.0'
+git push --tags
+```
 
+Now, let's modify index.js as follows to create a new feature:
 
+```js
+var express = require('express');
 
+// Constants
+var PORT = 8080;
 
+// App
+var app = express();
+app.get('/', function (req, res) {
+    res.send('Hello world with a great new feature\n');
+});
 
-## Setup triggers
+app.listen(PORT);
+console.log('Running on http://localhost:' + PORT);
+```
 
-TODO
+To create version 0.2.0, let's commit, tag with ```v0.2.0``` then push to Github:
+ 
+```
+git commit -m "Updated index.js"
+git tag -a v0.2.0 -m 'Version 0.2.0'
+git push --tags
+```
 
-https://registry.hub.docker.com/u/jlchereau/docker-aws/settings/triggers/
+You should see releases v0.1.0 and v0.2.0 in Github.
+
+![Version 0.1.0 and Version 0.2.0 in Github](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/github6.png)
+
+Let's configure these releases in Docker hub to build an image per release. On the build details tab of the <username>/docker-aws repository, click edit build details and add two tags as follows:
+
+![Version 0.1.0 and Version 0.2.0 in Docker hub](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/github7.png)
+
+The docker image for v0.1.0 can be loaded in the following dockerrun.aws.json:
+
+```json
+{
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+    "Name": "jlchereau/docker-aws:v0.1.0"
+  },
+  "Ports" : [
+    {
+      "ContainerPort": "8080"
+    }
+  ]
+}
+```
+
+This file is located at https://github.com/jlchereau/Docker-AWS/blob/master/steps/3%20GITHUB%20Version%200.1.0/Dockerrun.aws.json
+
+A similar Dockerrun.aws.json for v0.2.0 is located at https://github.com/jlchereau/Docker-AWS/blob/master/steps/4%20GITHUB%20Version%200.2.0/Dockerrun.aws.json
+
+Upload either Dockerrun.aws.json in AWS Elastic Beanstalk console depending on the version you want to deploy and test that you either get "Hello World" or "Hello World with a great new feature" in your browser.
+
+![Load Dockerrun.aws.json in AWS EB](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/github8.png)

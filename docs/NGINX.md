@@ -7,3 +7,4 @@
 - http://nginx.org/en/docs/http/ngx_http_core_module.html#location
 - http://articles.slicehost.com/nginx
 - https://calomel.org/nginx.html
+- http://www.randomhacks.net/2015/04/05/migrating-from-heroku-linode-to-aws-docker/
