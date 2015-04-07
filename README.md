@@ -102,7 +102,7 @@ EXPOSE  8080
 CMD ["node", "/app/index.js"]
 ```
 
-*Note: This Dockerfile can be found at https://github.com/jlchereau/Docker-AWS/blob/master/steps/1/Dockerfile.*
+*Note: This Dockerfile can be found at https://github.com/jlchereau/Docker-AWS/blob/master/steps/1%20EB%20Single%20Instance%20from%20CentOS/Dockerfile.*
 
 The second step consists in building an image in the boot2docker console:
 

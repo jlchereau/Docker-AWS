@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": 1,
   "Image": {
-    "Name": "jlchereau/docker-aws"
+    "Name": "jlchereau/docker-aws:v0.2.0"
   },
   "Ports" : [
     {
