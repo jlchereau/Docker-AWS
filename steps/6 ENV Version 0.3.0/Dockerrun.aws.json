@@ -1,0 +1,11 @@
+{
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+    "Name": "jlchereau/docker-aws:v0.3.0"
+  },
+  "Ports" : [
+    {
+      "ContainerPort": "8080"
+    }
+  ]
+}
