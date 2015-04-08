@@ -2,4 +2,4 @@
 # See https://blog.marcelofs.com/from-zero-to-docker-your-irc-bot-with-node-js/
 
 # FROM dockerfile/nodejs-runtime
-FROM node:0.12.2-onbuild
+FROM node:onbuild
