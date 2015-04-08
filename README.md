@@ -143,3 +143,15 @@ $ docker rmi centos:centos6
 Note the user of the boot2docker VM is ```docker``` and the password is ```tcuser``` as seen at https://docs.docker.com/installation/windows/.
 
 To remove untagged images (```<none>``` tag) from your Docker host, see http://jimhoskins.com/2013/07/27/remove-untagged-docker-images.html.
+
+### More
+
+There is a nice cheat sheet at https://github.com/wsargent/docker-cheat-sheet
+
+Continue with:
+- [Deployment with AWS Elastic Beanstalk](https://github.com/jlchereau/Docker-AWS/blob/master/docs/EB.md)
+- [Deployment with AWS Elastic Container Service](https://github.com/jlchereau/Docker-AWS/blob/master/docs/ECS.md)
+- [Integration with Github via Docker hub](https://github.com/jlchereau/Docker-AWS/blob/master/docs/GITHUB.md)
+- [Integration with Github via WGET and UNZIP](https://github.com/jlchereau/Docker-AWS/blob/master/docs/GITHUB2.md)
+- [Environment variables](https://github.com/jlchereau/Docker-AWS/blob/master/docs/ENV.md)
+- [Proxying with NGINX](https://github.com/jlchereau/Docker-AWS/blob/master/docs/NGINX.md)

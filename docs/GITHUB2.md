@@ -40,3 +40,5 @@ EXPOSE 8080
 ```
 
 This file can be uploaded into AWS Elastic Beanstalk in place of Dockerrun.aws.json to deploy version 0.1.0.
+
+This file can be found at https://github.com/jlchereau/Docker-AWS/blob/master/steps/5%20GITHUB2%20Download%20and%20Install/Dockerfile.
