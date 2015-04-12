@@ -1,7 +1,7 @@
 benefit of nodejs cluster in docker environment ?????
 benefit of running apps under different paths (/api, /blog, etc.) under same nodeJS instance in docker environement
 When not to use Elastic Beanstalk?
-Is Amazon Linux API best choice (running debian on top)
+Is Amazon Linux API best choice (running debian on top - debian-wheezy most stable??)
 What happens when running different versions of debian?
 haproxy versus Amazon ELB?
 Build images from Github on Docker Hub or use wget + unzip?
