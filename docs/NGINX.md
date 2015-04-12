@@ -1,7 +1,12 @@
 # Using nginx as a reverse proxy to nodeJS
 
-Proxying requests via nginx is well described at https://www.digitalocean.com/community/tutorials/understanding-nginx-http-proxying-load-balancing-buffering-and-caching.
+Proxying requests via nginx is well described at:
+- https://www.digitalocean.com/community/tutorials/understanding-nginx-http-proxying-load-balancing-buffering-and-caching.
+- https://www.digitalocean.com/community/tutorials/docker-explained-how-to-containerize-and-use-nginx-as-a-proxy
+
 Although it is PHP, there is a good tutorial for what we want to achieve at http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_ecstutorial.html.
+
+## Linking nginx with nodeJS applications
 
 In a new directory, let's ceate ```Dockerrun.aws.json```:
  
@@ -74,9 +79,13 @@ server {
 }
 ```
 
-Let's zip ```Dockerrun.aws.json``` and ```proxy/conf.d/default.conf``` together and let's create a new application in AWS Elastic Beanstalk fro this zip.
+Let's zip ```Dockerrun.aws.json``` and ```proxy/conf.d/default.conf``` together and let's create a new application in AWS Elastic Beanstalk for this zip.
 
 Docker-AWS is now proxied through nginx. The configuration with one app server is available at https://github.com/jlchereau/Docker-AWS/tree/master/steps/7%20NGINX%20-%20one%20app%20server.
+
+See also http://stackoverflow.com/questions/5009324/node-js-nginx-and-now and http://nginx.org/en/docs/http/ngx_http_core_module.html#location.
+
+## Load balancing containers with nginx
 
 For two app servers, these files need to be modified as follows:
 
@@ -155,48 +164,75 @@ server {
 }
 ```
 
-Let's zip ```Dockerrun.aws.json``` and ```proxy/conf.d/default.conf``` together and let's create a new application in AWS Elastic Beanstalk fro this zip.
+Let's zip ```Dockerrun.aws.json``` and ```proxy/conf.d/default.conf``` together and let's create a new application in AWS Elastic Beanstalk for this zip.
 
 Docker-AWS is now proxied through nginx. and two app servers are load balanced on the same EC2 instance. The configuration with two app servers is available at https://github.com/jlchereau/Docker-AWS/tree/master/steps/8%20NGINX%20-%20two%20app%20servers.
 
+See http://stackoverflow.com/questions/28315706/how-to-load-balance-containers.
 
+## Adding GZIP compression
 
+GZip compression is documented at:
+- http://nginx.com/resources/admin-guide/compression-and-decompression/
+- http://nginx.org/en/docs/http/ngx_http_gzip_module.html.
 
+In order to add GZIP compression to nginx, we only need to modify proxy/conf.d/default.conf as follows:
 
-- https://www.digitalocean.com/community/tutorials/docker-explained-how-to-containerize-and-use-nginx-as-a-proxy
+```
+# our nodejs app
+upstream webapps {
+    server webapp1:8080;
+    server webapp2:8080;
+}
 
-- http://stackoverflow.com/questions/5009324/node-js-nginx-and-now
-- https://www.digitalocean.com/community/tutorials/how-to-host-multiple-node-js-applications-on-a-single-vps-with-nginx-forever-and-crontab (FOREVER)
-- https://calomel.org/nginx.html
-- http://www.randomhacks.net/2015/04/05/migrating-from-heroku-linode-to-aws-docker/
-- https://github.com/jwilder/nginx-proxy
+# the nginx server instance
+server {
+    listen 80;
 
+    # gzip
+    gzip on;
+    gzip_proxied any;
+    gzip_vary on;
 
-## Adding Locations and Links
+    # pass the request to the node.js server with the correct headers
+    # and much more can be added, see nginx config options
+    location / {
+      proxy_pass http://webapps;
+      proxy_redirect     off;
+      proxy_set_header   Host $host;
+      proxy_set_header   X-Real-IP $remote_addr;
+      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Host $server_name;
+    }
+}
+```
 
+Let's zip ```Dockerrun.aws.json``` and ```proxy/conf.d/default.conf``` together and let's create a new application in AWS Elastic Beanstalk for this zip.
 
+Docker-AWS is now proxied through nginx with GZip compression. The configuration with Gzip compression is available at https://github.com/jlchereau/Docker-AWS/tree/master/steps/9%20NGINX%20GZIP%20Compression.
 
-- http://nginx.org/en/docs/http/ngx_http_core_module.html#location
-- https://github.com/jwilder/nginx-proxy
+GZIP compression can be checked at http://www.giftofspeed.com/gzip-test/.
 
+![GZip compression](https://raw.githubusercontent.com/jlchereau/Docker-AWS/master/graphics/nginx1.png)
 
 ## Adding volumes and Logs
 
+- https://www.digitalocean.com/community/tutorials/how-to-centralize-your-docker-logs-with-fluentd-and-elasticsearch-on-ubuntu-14-04
 
 
-## Adding GZIP
 
 
 
-## Adding Caching
+## Adding Caching Control
 
-
+https://www.digitalocean.com/community/tutorials/understanding-nginx-http-proxying-load-balancing-buffering-and-caching
 
 ## Adding SSL
 
 - http://www.sitepoint.com/configuring-nginx-ssl-node-js/
 - http://serverfault.com/questions/67316/in-nginx-how-can-i-rewrite-all-http-requests-to-https-while-maintaining-sub-dom
 
-## Load balancing
 
-http://stackoverflow.com/questions/28315706/how-to-load-balance-containers
+## Optimizations
+
+See https://calomel.org/nginx.html
